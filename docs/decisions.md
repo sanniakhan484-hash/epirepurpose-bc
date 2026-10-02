@@ -12,3 +12,9 @@ Record each decision with date, options considered, choice, and reason.
 - Finding: BRCA1 promoter methylation is low in breast cell lines (maximum 0.46 in MDAMB134VI, most below 0.1).
 - Decision: BRCA1 cannot define methylated vs unmethylated groups among breast lines. It is kept as a case study only. The main analysis uses genome-wide methylation-silenced gene modules and global methylation patterns. BRCA1 will be revisited in tumor data (TCGA) in Aim 3.
 - Note: when a single BRCA1 value is needed, use the TSS row with the highest coverage (`BRCA1_17_41276132_41277132`, avg coverage about 120).
+
+## #3 Checkpoint 2: joining methylation to model annotations (2026-10-02)
+- 839 of 843 methylation cell lines match Model.csv via CCLEName. All 47 breast lines matched (script: scripts/check_join.py).
+- Subtype: use ModelSubtypeFeatures (44 of 47 breast lines labeled in the top-10 printout; 3 to inspect). Approximate grouping: TNBC 20, ER+/HER2- 7, ER+/HER2+ 9, HER2+/ER- 8. Final mapping to be written in code.
+- OncotreeSubtype is not used for subtype: its categories overlap and are inconsistent.
+- Implication: methylation differs by subtype, so subtype is a required covariate in all association models.
