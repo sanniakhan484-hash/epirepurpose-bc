@@ -1,0 +1,18 @@
+# data (never commit raw/interim data)
+data/raw/*
+data/interim/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+# python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+# secrets / env
+.env
+*.key
+# OS
+.DS_Store

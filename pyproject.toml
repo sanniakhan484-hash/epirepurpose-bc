@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epirepurpose"
+version = "0.0.1"
+description = "Multi-evidence, epigenetics-informed drug repurposing for breast cancer"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "statsmodels>=0.14",
+    "scikit-learn>=1.3",
+    "pyarrow>=14",
+    "pyyaml>=6",
+]
+
+[project.optional-dependencies]
+app = ["streamlit>=1.30", "plotly>=5.18"]
+dev = ["pytest>=7", "ruff>=0.4"]
+
+[project.scripts]
+epirepurpose = "epirepurpose.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100

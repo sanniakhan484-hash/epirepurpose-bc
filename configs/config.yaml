@@ -1,0 +1,11 @@
+# All tunable parameters live here, not in code.
+random_seed: 42
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  results: results
+analysis:
+  fdr_alpha: 0.05
+  min_lines_per_drug: 8        # placeholder: justify and finalize in docs/decisions.md
+  n_permutations: 1000

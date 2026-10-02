@@ -1,0 +1,46 @@
+# Every raw file used by the project. Fill in after verifying the CURRENT release
+# on each provider's download page. Leave url as "TODO" until verified.
+# After first download, copy the printed sha256 into the entry.
+files:
+  - name: depmap_model_annotations
+    source: DepMap portal
+    release: TODO
+    filename: depmap_models.csv
+    url: TODO
+    sha256: null
+  - name: depmap_rrbs_promoter_methylation
+    source: DepMap / CCLE
+    release: TODO
+    filename: ccle_rrbs_tss1kb.txt
+    url: TODO
+    sha256: null
+  - name: depmap_expression
+    source: DepMap
+    release: TODO
+    filename: depmap_expression.csv
+    url: TODO
+    sha256: null
+  - name: prism_primary_screen
+    source: DepMap / PRISM Repurposing
+    release: TODO
+    filename: prism_primary.csv
+    url: TODO
+    sha256: null
+  - name: prism_secondary_screen
+    source: DepMap / PRISM Repurposing
+    release: TODO
+    filename: prism_secondary.csv
+    url: TODO
+    sha256: null
+  - name: gdsc_drug_response
+    source: GDSC
+    release: TODO
+    filename: gdsc_response.csv
+    url: TODO
+    sha256: null
+  - name: ctrp_drug_response
+    source: CTRP
+    release: TODO
+    filename: ctrp_response.csv
+    url: TODO
+    sha256: null
