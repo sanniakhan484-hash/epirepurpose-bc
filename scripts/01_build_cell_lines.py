@@ -1,5 +1,6 @@
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 RAW = Path("data/raw")
 OUT = Path("data/interim")

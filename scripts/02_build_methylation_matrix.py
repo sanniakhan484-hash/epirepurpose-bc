@@ -1,6 +1,7 @@
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
 
 RAW = Path("data/raw")
 INT = Path("data/interim")
