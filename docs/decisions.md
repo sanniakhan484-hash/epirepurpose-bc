@@ -57,3 +57,10 @@ Record each decision with date, options considered, choice, and reason.
 - Guadecitabine comes from screen REP.1M, the other ten positive-control drugs from REP.PRIMARY. Not directly comparable.
 - Lymphoid and myeloid lines have no data for the 10 REP.PRIMARY positive-control drugs (older screen used adherent lines only). Every analysis must use only the cell lines with data for that treatment.
 - Display bug fixed: lineages with no data sorted as "least sensitive" because their median was NaN. Fixed with dropna() before sorting.
+
+## #9 Checkpoint 9: expression data (2026-10-03)
+- Source: DepMap 26Q1 OmicsExpressionTPMLogp1HumanProteinCodingGenes.csv (305.0 MB; log2(TPM+1), protein-coding genes). Script: scripts/check_expression.py.
+- Structure: 6 info columns (Unnamed: 0, SequencingID, ModelConditionID, ModelID, IsDefaultEntryForMC, IsDefaultEntryForModel) then 19,215 gene columns named "SYMBOL (EntrezID)". The portal pop-up described different column names; the real header was checked before coding against it.
+- 1,775 profiles for 1,719 cell lines; 54 lines have more than one profile. IsDefaultEntryForModel = Yes for exactly one profile per line. Decision: keep only the default profile per cell line.
+- Coverage: 618 of the 623 master cell lines have expression, including all 27 breast lines. Expression-dependent analyses use the 618 lines; methylation-vs-drug analyses keep all 623.
+- Gene naming: strip the " (EntrezID)" suffix to match the plain symbols used in the methylation annotation.
