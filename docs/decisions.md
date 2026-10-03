@@ -42,3 +42,10 @@ Record each decision with date, options considered, choice, and reason.
 - 1 treatment has no metadata (compound list and matrix disagree on one row; possible duplicated ID). Exclude it and inspect later.
 - 207 drug names appear more than once (screen/batch/form). Duplicate-handling rule to be chosen at analysis time and documented. The 11 positive-control drugs each appear once.
 - Implication: breast-only testing has about 24 lines per drug. It remains exploratory; the pan-cancer model with lineage terms is the main analysis.
+
+## #7 Checkpoint 7: methylation structure (2026-10-02)
+- PCA on the 5,000 most variable regions (regions with <=10% missing; remaining gaps filled with the region mean). Script: scripts/04_methylation_pca.py. Scores saved to data/interim/methylation_pcs.csv.
+- Subtype grouping rule written in code (breast lines): TNBC 13, ER+ 9, HER2+ without ER 5. The ER+ group mixes HER2- (4) and HER2+ (5) lines; kept together for now.
+- Positive control passed: tissue lineage explains a large share of several PCs (eta-squared 0.39 for PC1, up to 0.70 for PC7), so the methylation data is biologically structured and not scrambled.
+- Breast subtype: eta-squared is near chance (expected about 0.08 with n=27, 3 groups) for most PCs but 0.41 (PC5) and 0.44 (PC9) for two. Suggestive only; would need a permutation test.
+- Implication: lineage is the dominant source of methylation variation and also affects drug response. Pan-cancer models must adjust for lineage, and results must be checked within-lineage (including breast-only) to avoid rediscovering tissue differences.
