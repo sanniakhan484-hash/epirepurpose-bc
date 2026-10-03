@@ -49,3 +49,11 @@ Record each decision with date, options considered, choice, and reason.
 - Positive control passed: tissue lineage explains a large share of several PCs (eta-squared 0.39 for PC1, up to 0.70 for PC7), so the methylation data is biologically structured and not scrambled.
 - Breast subtype: eta-squared is near chance (expected about 0.08 with n=27, 3 groups) for most PCs but 0.41 (PC5) and 0.44 (PC9) for two. Suggestive only; would need a permutation test.
 - Implication: lineage is the dominant source of methylation variation and also affects drug response. Pan-cancer models must adjust for lineage, and results must be checked within-lineage (including breast-only) to avoid rediscovering tissue differences.
+
+## #8 Checkpoint 8: drug response structure (2026-10-02)
+- Script: scripts/05_drug_structure.py. Rank-based eta-squared per treatment for lineage (17 lineages with >=10 lines, 588 cell lines). Output: data/interim/drug_lineage_eta2.csv.
+- Finding: lineage explains little of drug response on average (mean eta-squared 0.047, maximum 0.287; chance level is about 0.027). This corrects an earlier expectation that lineage would dominate drug response. Lineage stays as a covariate in all models because it dominates methylation structure (checkpoint 7).
+- Positive controls behave as expected: HDAC inhibitors strongly cytotoxic in all lineages (breast medians -1.5 to -3.9), so they are unlikely to show epigenetic-state selectivity; DNMT inhibitors weak in the 5-day assay (azacitidine -0.27, decitabine -0.77 in breast); PARP inhibitors weak at a single dose, talazoparib clearest (-0.79). Lineage rankings for olaparib, niraparib and rucaparib are near zero and mostly noise.
+- Guadecitabine comes from screen REP.1M, the other ten positive-control drugs from REP.PRIMARY. Not directly comparable.
+- Lymphoid and myeloid lines have no data for the 10 REP.PRIMARY positive-control drugs (older screen used adherent lines only). Every analysis must use only the cell lines with data for that treatment.
+- Display bug fixed: lineages with no data sorted as "least sensitive" because their median was NaN. Fixed with dropna() before sorting.
