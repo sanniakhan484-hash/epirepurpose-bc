@@ -64,3 +64,4 @@ Record each decision with date, options considered, choice, and reason.
 - 1,775 profiles for 1,719 cell lines; 54 lines have more than one profile. IsDefaultEntryForModel = Yes for exactly one profile per line. Decision: keep only the default profile per cell line.
 - Coverage: 618 of the 623 master cell lines have expression, including all 27 breast lines. Expression-dependent analyses use the 618 lines; methylation-vs-drug analyses keep all 623.
 - Gene naming: strip the " (EntrezID)" suffix to match the plain symbols used in the methylation annotation.
+
