@@ -33,3 +33,12 @@ Record each decision with date, options considered, choice, and reason.
 - Quality: 4.2% missing overall, no region over 50% missing, values within 0-1, no duplicate region IDs, average coverage 16 to 4,587 (median about 330).
 - Open decision: 2,778 genes have multiple TSS regions. Rule to be chosen when building gene-level features (candidate: highest-coverage region, as used for BRCA1).
 - Caveat: avg_coverage is averaged across cell lines, not per cell line.
+
+## #6 Checkpoint 6: drug matrix (2026-10-02)
+- Built data/interim/drug_matrix.parquet (6,790 treatments x 623 cell lines, DepMap IDs) and drug_meta.csv (name, screen, dose, MOA, target, n_lines, n_breast). Script: scripts/03_build_drug_matrix.py.
+- Quality: 20.4% missing; every treatment has >=392 cell lines and >=15 breast lines (24 for the positive-control drugs, 27 for guadecitabine).
+- Distribution: median -0.06; 1% of values below -5.2, 0.1% below -9.8; upper tail small (99.9th percentile +1.7). Long negative tail is likely a measurement floor from strong killing, not necessarily error.
+- Decision: rank-based statistics are primary; sensitivity analysis with clipped values (for example at the 1st percentile).
+- 1 treatment has no metadata (compound list and matrix disagree on one row; possible duplicated ID). Exclude it and inspect later.
+- 207 drug names appear more than once (screen/batch/form). Duplicate-handling rule to be chosen at analysis time and documented. The 11 positive-control drugs each appear once.
+- Implication: breast-only testing has about 24 lines per drug. It remains exploratory; the pan-cancer model with lineage terms is the main analysis.
