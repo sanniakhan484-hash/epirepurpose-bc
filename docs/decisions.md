@@ -26,3 +26,10 @@ Record each decision with date, options considered, choice, and reason.
 - Sample size: 47 breast lines have methylation, 33 have drug data, 27 have both (my grouping of ModelSubtypeFeatures: TNBC 13, ER+ 9, HER2+/ER- 5).
 - Decision: breast-only per-drug testing across ~6,700 treatments is underpowered. Main analysis is pan-cancer with lineage covariates and a breast-specific term. Breast-only results are exploratory, reported with effect sizes and confidence intervals.
 - Positive-control drugs present: PARP inhibitors (olaparib, talazoparib, niraparib, rucaparib), HDAC inhibitors (vorinostat, belinostat, panobinostat, romidepsin), DNMT inhibitors (azacitidine, decitabine, guadecitabine).
+
+## #5 Checkpoint 5: methylation matrix (2026-10-02)
+- Built data/interim/methylation_matrix.parquet: 20,192 TSS regions x 623 cell lines (columns are DepMap IDs). Gene/region annotation saved separately in tss_annotation.csv. Script: scripts/02_build_methylation_matrix.py.
+- Issue found: some missing values were stored as space-padded "NA" strings (about 527k entries), which made pandas read columns as text. Fixed by coercing all values to numeric; unparseable entries become missing.
+- Quality: 4.2% missing overall, no region over 50% missing, values within 0-1, no duplicate region IDs, average coverage 16 to 4,587 (median about 330).
+- Open decision: 2,778 genes have multiple TSS regions. Rule to be chosen when building gene-level features (candidate: highest-coverage region, as used for BRCA1).
+- Caveat: avg_coverage is averaged across cell lines, not per cell line.
