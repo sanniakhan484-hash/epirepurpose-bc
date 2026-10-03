@@ -65,3 +65,9 @@ Record each decision with date, options considered, choice, and reason.
 - Coverage: 618 of the 623 master cell lines have expression, including all 27 breast lines. Expression-dependent analyses use the 618 lines; methylation-vs-drug analyses keep all 623.
 - Gene naming: strip the " (EntrezID)" suffix to match the plain symbols used in the methylation annotation.
 
+
+## #11 Checkpoint 11: gene-level methylation vs expression (2026-10-03)
+- Script: scripts/07_gene_methylation_expression.py. For each of 12,694 genes (methylation region with the highest avg_coverage per gene), Spearman rho across 618 cell lines (raw), and a lineage-adjusted version (ranks minus lineage means, then correlation; df = n - lineages - 1). BH FDR on adjusted p-values. Output: data/interim/gene_meth_expr.csv.
+- Findings: median rho -0.024 raw and -0.011 adjusted. Genes with rho < -0.3: 2,115 raw, 1,425 adjusted (about a third of the raw signal was lineage). Genes with adjusted rho > +0.3: only 42. All 1,425 adjusted hits have FDR < 0.05, so with n about 600 the FDR filter adds nothing at that effect size; the effect-size cutoff is what matters. The -0.3 cutoff is provisional and not yet justified.
+- Known genes (adjusted rho): MGMT -0.44, CDH1 -0.49, RASSF1 -0.23, ESR1 -0.20 (all FDR < 0.001, as expected from the literature); BRCA1 +0.09 (null, consistent with checkpoint 1). MLH1 +0.02 and CDKN2A -0.10 (FDR 0.12) do not show silencing. Untested explanations: CDKN2A homozygous deletion in cancer lines; for MLH1, silencing in a small subset of lines and/or the highest-coverage region not covering its promoter.
+- Decision: use the lineage-adjusted rho as the primary measure. Keep the highest-coverage region rule as provisional until the MLH1 check (all MLH1 TSS regions) is done.
